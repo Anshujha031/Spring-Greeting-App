@@ -72,5 +72,13 @@ public class GreetingService {
             throw new RuntimeException("Greeting not found with ID: " + id);
         }
     }
-
+    public String deleteGreetingById(Long id) {
+        Optional<Greeting> greeting = greetingRepository.findById(id);
+        if (greeting.isPresent()) {
+            greetingRepository.deleteById(id);
+            return "Greeting deleted successfully.";
+        } else {
+            return "Greeting with ID " + id + " not found.";
+        }
+    }
 }
