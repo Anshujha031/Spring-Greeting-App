@@ -1,8 +1,10 @@
 package com.example.SpringGreetingApp.controller;
 
+import com.example.SpringGreetingApp.model.Greeting;
 import com.example.SpringGreetingApp.service.GreetingService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -48,7 +50,10 @@ public class GreetingController {
     }
 
 
+    @PostMapping("/save")
+    public Greeting saveGreeting(@RequestParam String message){
+        return greetingService.saveGreeting(message);
+    }
 
 
-    
 }
