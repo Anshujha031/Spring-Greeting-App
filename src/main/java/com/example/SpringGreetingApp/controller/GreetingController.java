@@ -3,6 +3,8 @@ package com.example.SpringGreetingApp.controller;
 import com.example.SpringGreetingApp.service.GreetingService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/greet")
 public class GreetingController {
@@ -15,10 +17,20 @@ public class GreetingController {
         this.greetingService = greetingService;
     }
 
-    @GetMapping
+
+    @GetMapping("/service")
     public String getGreeting(){
         return greetingService.getGreetingService();
     }
+
+    // UC3: Personalized Greeting (New Endpoint)
+    @GetMapping("/personalized")
+    public String  getPersonalizedGreeting(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName) {
+        return (greetingService.getPersonalizedGreeting(firstName, lastName));
+    }
+
 
     @PostMapping
     public String postGreeting(){
