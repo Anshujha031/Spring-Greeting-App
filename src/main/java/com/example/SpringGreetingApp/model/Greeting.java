@@ -1,12 +1,10 @@
 package com.example.SpringGreetingApp.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "greetings")
 public class Greeting {
 
     @Id  // ✅ This makes 'id' the primary key

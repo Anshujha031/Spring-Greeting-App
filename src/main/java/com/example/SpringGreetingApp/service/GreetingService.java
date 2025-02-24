@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class GreetingService {
@@ -58,6 +59,18 @@ public class GreetingService {
     // Get all Greetings
     public List<Greeting> getAllGreetings() {
         return greetingRepository.findAll();
+    }
+
+    public Greeting updateGreeting(Long id, String newMessage) {
+        Optional<Greeting> optionalGreeting = greetingRepository.findById(id);
+
+        if (optionalGreeting.isPresent()) {
+            Greeting greeting = optionalGreeting.get();
+            greeting.setMessage(newMessage);
+            return greetingRepository.save(greeting); // Save and return the updated greeting
+        } else {
+            throw new RuntimeException("Greeting not found with ID: " + id);
+        }
     }
 
 }
